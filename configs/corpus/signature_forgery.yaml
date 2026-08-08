@@ -1,0 +1,5 @@
+# Selects the signature-forgery corpus for scripts/train.py
+# (registered loader: scripts/corpora_registry.py:_load_signature_forgery_rows).
+name: signature_forgery
+default_checkpoint_dir: models/checkpoints/signature_forgery
+display_name: "signature-forgery training corpus (genuine only)"
