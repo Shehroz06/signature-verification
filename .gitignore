@@ -44,3 +44,7 @@ mlruns/
 # Hydra run outputs
 outputs/
 multirun/
+
+# Local working notes / Colab setup -- never committed
+/docs/
+/colab/

@@ -17,7 +17,7 @@ class VerificationAppConfig(BaseModel):
     preprocessing: PreprocessingConfig = PreprocessingConfig()
     embedding: EmbeddingConfig = EmbeddingConfig()
     checkpoint_path: Path | None = None
-    """Path to this child project's trained checkpoint (e.g.
+    """Path to this downstream project's trained checkpoint (e.g.
     `models/checkpoints/signature_forgery/best_model.pt`, written by
     `scripts/train.py corpus=signature_forgery`). Loaded into a freshly
     constructed `EmbeddingModel` when the adapter builds its own model (i.e.
@@ -31,4 +31,4 @@ class VerificationAppConfig(BaseModel):
     calibrated value -- a real deployment should instead set this from
     `evaluation.verification.compute_verification_metrics`'s `eer_threshold`
     on held-out genuine/impostor pairs, e.g. from the signature-forgery
-    child project's own evaluation run."""
+    downstream project's own evaluation run."""

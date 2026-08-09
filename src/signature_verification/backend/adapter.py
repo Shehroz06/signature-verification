@@ -1,9 +1,9 @@
-"""Signature verification: an independent child project built on the
+"""Signature verification: an independent downstream project built on the
 `handwriting_engine` core engine (installed as a dependency) -- composes
 preprocessing and the embedding model into a single `.verify(image_a,
 image_b)` call, with no changes to the engine itself.
 
-This is one downstream use case among possibly several sibling child
+This is one downstream use case among possibly several sibling downstream
 projects (e.g. writer identification) that follow the same shape: compose
 existing engine components, add nothing to `handwriting_engine` itself.
 """

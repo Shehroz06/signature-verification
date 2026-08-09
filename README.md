@@ -1,6 +1,6 @@
 # Signature Verification
 
-A child project built on the [Handwriting Analysis Engine](../handwriting-detection-engine) —
+A downstream project built on the [Handwriting Analysis Engine](../handwriting-detection-engine) —
 decides whether two signature images likely belong to the same signer, via a
 DINOv2-embedding + Circle-Loss model trained on CEDAR + SigComp2011.
 
@@ -9,20 +9,15 @@ It does not modify the core engine — it only depends on it.
 
 ## Depending on the engine
 
-Right now `pyproject.toml` points at the engine via an absolute local path
-(uv/hatchling doesn't reliably resolve a *relative* `file:` reference across
-the wheel-metadata parsing step, so this has to be absolute):
-
-```toml
-dependencies = ["handwriting-engine @ file:///home/shehroz/Documents/VS%20Code/Projects/Handwriting%20detection"]
-```
-
-Update that path if you rename or relocate the engine repo. Once the engine
-repo is pushed to GitHub, swap this for:
+`pyproject.toml` points at the engine via its GitHub source, since the
+engine repo is public now:
 
 ```toml
 dependencies = ["handwriting-engine @ git+https://github.com/Shehroz06/handwriting-detection-engine.git"]
 ```
+
+This resolves the same way on any machine (including Colab), unlike the
+earlier local absolute `file:` path.
 
 ## Setup
 
@@ -30,6 +25,23 @@ dependencies = ["handwriting-engine @ git+https://github.com/Shehroz06/handwriti
 uv sync --group dev
 uv run pytest   # confirms the install works, no network or checkpoint required
 ```
+
+## Evaluation results (CEDAR baseline, frozen)
+
+The current checkpoint is frozen as the official baseline, measured on
+held-out CEDAR test writers via `scripts/evaluate_signature_forgery.py`:
+
+| Protocol | ROC-AUC | EER |
+|---|---|---|
+| Random forgery | **99.84%** | **2.12%** |
+| Skilled forgery | **92.85%** | **15.09%** |
+
+These are the numbers to cite for this model. The evaluation script also
+reports SigComp2011 separately (per-corpus, never pooled with CEDAR — see
+`scripts/evaluate_signature_forgery.py`'s docstring for why pooling the two
+is invalid); SigComp2011 performance is a known limitation, not part of the
+official baseline, and is deferred to future work rather than blocking this
+release.
 
 ## Get the trained checkpoint
 

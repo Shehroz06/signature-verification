@@ -1,16 +1,15 @@
 [project]
 name = "signature-verification"
 version = "0.1.0"
-description = "Signature verification child project, built on the handwriting-engine core."
+description = "Signature verification downstream project, built on the handwriting-engine core."
 readme = "README.md"
 requires-python = ">=3.11"
 dependencies = [
-    # Absolute local path for now -- swap to the published source once
-    # handwriting-engine is pushed to GitHub (see README.md "Depending on
-    # the engine"). Must be absolute + percent-encoded: uv/hatchling doesn't
-    # reliably resolve a relative `file:` reference across the wheel-metadata
-    # parsing step. Update this path if you rename or relocate that repo.
-    "handwriting-engine @ file:///home/shehroz/Documents/VS%20Code/Projects/Handwriting%20detection",
+    "handwriting-engine @ git+https://github.com/Shehroz06/handwriting-detection-engine.git",
+    # Used directly by corpora/signatures.py and scripts/evaluate_signature_forgery.py
+    # (load_sigcomp2011 / imagefolder loading) -- not a transitive dependency
+    # of handwriting-engine, so it must be declared here explicitly.
+    "datasets>=3.0",
 ]
 
 [dependency-groups]

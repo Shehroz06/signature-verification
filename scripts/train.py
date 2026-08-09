@@ -5,7 +5,7 @@ one entry so a second corpus can be added later without a new script:
     uv run python -m scripts.train corpus=signature_forgery
 
 This project consumes `handwriting_engine` (the core engine) as a dependency;
-nothing here is engine code -- it's this child project's own training-glue
+nothing here is engine code -- it's this downstream project's own training-glue
 script.
 
 Every other setting (epochs, batch composition, learning rate, device, dataloader
