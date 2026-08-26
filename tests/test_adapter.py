@@ -2,9 +2,8 @@
 
 Uses a tiny, randomly-initialized DINOv2 model injected via `EmbeddingModel`
 (no network call) for decision-logic tests. The real-checkpoint loading path
-(`VerificationAppConfig.checkpoint_path`, no injected model) is covered
-separately in test_checkpoint_wiring.py, since that needs the real trained
-weights, not this file's tiny model.
+(`VerificationAppConfig.checkpoint_path`, no injected model) needs the real
+trained weights and isn't covered here.
 """
 
 from __future__ import annotations

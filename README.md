@@ -1,6 +1,6 @@
 # Signature Verification
 
-A downstream project built on the [Handwriting Analysis Engine](../handwriting-detection-engine) —
+A downstream project built on the [Handwriting Analysis Engine](https://github.com/Shehroz06/handwriting-detection-engine) —
 decides whether two signature images likely belong to the same signer, via a
 DINOv2-embedding + Circle-Loss model trained on CEDAR + SigComp2011.
 
@@ -9,15 +9,12 @@ It does not modify the core engine — it only depends on it.
 
 ## Depending on the engine
 
-`pyproject.toml` points at the engine via its GitHub source, since the
-engine repo is public now:
+`pyproject.toml` points at the engine via its GitHub source:
 
 ```toml
 dependencies = ["handwriting-engine @ git+https://github.com/Shehroz06/handwriting-detection-engine.git"]
 ```
 
-This resolves the same way on any machine (including Colab), unlike the
-earlier local absolute `file:` path.
 
 ## Setup
 
@@ -45,7 +42,10 @@ release.
 
 ## Get the trained checkpoint
 
-Checkpoints aren't committed to git (too large). Place the trained checkpoint at:
+Checkpoints aren't committed to git (too large). Download the frozen CEDAR
+baseline checkpoint from
+[Google Drive](https://drive.google.com/drive/folders/1roxTZKBYnqHduDHm9AnNf-YqQAkO3Qu7?usp=sharing)
+and place the files at:
 
 ```
 models/checkpoints/signature_forgery/

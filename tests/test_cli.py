@@ -1,7 +1,6 @@
 """Tests for signature_verification.backend.cli's argument handling and error
 paths -- doesn't exercise the real embedding-model path (that needs the actual
-trained checkpoint; see test_checkpoint_wiring.py and this project's manual
-CLI smoke test for that)."""
+trained checkpoint; see this project's manual CLI smoke test for that)."""
 
 from __future__ import annotations
 
